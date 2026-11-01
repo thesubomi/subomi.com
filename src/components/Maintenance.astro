@@ -1,0 +1,61 @@
+---
+// The holding page shown at / while site.json has "maintenance": true.
+import "../styles/site.css";
+import site from "../data/site.json";
+import OlaMark from "./OlaMark.astro";
+
+const home = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+const title = `${site.name} · Building in progress`;
+const description = "subomi.com is being rebuilt. Playlists, writing, art, travels and running, coming soon.";
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(home, Astro.site)} />
+    <link rel="icon" href={`${home}favicon.svg`} type="image/svg+xml" />
+    <meta name="theme-color" content="#fbfbfb" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" />
+    <style>
+      .hold { min-height: 100svh; display: flex; flex-direction: column; }
+      .hold-top, .hold-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: var(--t-label); padding-top: 20px; padding-bottom: 20px; }
+      .hold-bottom { border-top: 1px solid var(--hairline); }
+      .hold-main { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 28px; padding-top: 48px; padding-bottom: 64px; }
+      .hold-main h1 { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(48px, 10vw, 160px); line-height: 1; letter-spacing: -0.045em; text-wrap: balance; }
+      .hold-main p { margin: 0; max-width: 30ch; font-family: var(--font-display); font-size: clamp(20px, 2.4vw, 28px); line-height: 1.2; letter-spacing: -0.015em; color: var(--ink-muted); text-wrap: balance; }
+      .status { display: inline-flex; align-items: center; gap: 10px; font-size: var(--t-label); }
+      .pulse { width: 8px; height: 8px; border-radius: 999px; background: var(--ink); animation: pulse 1.6s ease-in-out infinite; }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+      @media (prefers-reduced-motion: reduce) { .pulse { animation: none; } }
+      .hold-bottom .mark { display: inline-flex; color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <div class="hold wrap">
+      <header class="hold-top">
+        <span>©{site.name}</span>
+        <span>[ Warsaw ]</span>
+      </header>
+      <main class="hold-main">
+        <span class="status"><span class="pulse" aria-hidden="true"></span>[ Status ]</span>
+        <h1>Building in progress.</h1>
+        <p>Playlists, writing, art, travels and running. The new subomi.com is on its way.</p>
+      </main>
+      <footer class="hold-bottom">
+        <span>©{year}</span>
+        <span class="mark"><OlaMark height={18} label={site.name} /></span>
+        <a class="muted" href={site.work.href}>[ Work ] {site.work.label}</a>
+      </footer>
+    </div>
+  </body>
+</html>

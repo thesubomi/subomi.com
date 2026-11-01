@@ -11,5 +11,5 @@ export default defineConfig({
   site: customDomain ? "https://subomi.com" : "https://thesubomi.github.io",
   base: customDomain ? "/" : "/subomi.com",
   trailingSlash: "ignore",
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !page.includes("/preview") })],
 });

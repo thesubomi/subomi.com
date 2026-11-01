@@ -4,6 +4,10 @@
 
 The look follows the Ọláṣùbòmí design system in its website mode: ink on paper, text first. The brand colours stay on social posts; colour on the site comes only from content (cover art, artwork, photos).
 
+## Maintenance mode
+
+While `"maintenance": true` is set in `src/data/site.json`, subomi.com shows a "Building in progress" page (`src/components/Maintenance.astro`). The full site stays viewable at [subomi.com/preview/](https://subomi.com/preview/), hidden from search engines. Set it to `false` and push to put the full site on the home page.
+
 ## Editing content
 
 Everything on the home page lives in small JSON files. Edit a file, push to `main`, and the site rebuilds.
@@ -22,8 +26,11 @@ Text in `[brackets]` is placeholder copy waiting for the real thing.
 
 | URL | File |
 | --- | --- |
-| `/` | `src/pages/index.astro` |
+| `/` | `src/pages/index.astro` (maintenance page or the full home, see above) |
+| `/preview/` | `src/pages/preview.astro` (the full home, never indexed) |
 | 404 | `src/pages/404.astro` |
+
+The home page content itself lives in `src/components/Home.astro`.
 
 Shared parts: `src/layouts/Base.astro` (head, share tags), `src/components/` (header, footer, OLA mark). Styles: `src/styles/site.css`.
 

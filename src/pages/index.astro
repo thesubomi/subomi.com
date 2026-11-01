@@ -1,0 +1,144 @@
+---
+import Base from "../layouts/Base.astro";
+import site from "../data/site.json";
+import music from "../data/music.json";
+import writing from "../data/writing.json";
+import gallery from "../data/gallery.json";
+import running from "../data/running.json";
+
+const pad = (i: number) => String(i).padStart(2, "0");
+
+// Weekly distance as a single ink line, scaled to the next 10 km above the peak.
+const kms = running.weeks.map((w) => w.km);
+const top = Math.max(10, Math.ceil(Math.max(...kms) / 10) * 10);
+const spark = kms
+  .map((km, i) => `${((i * 240) / Math.max(1, kms.length - 1)).toFixed(1)},${(46 - (km / top) * 44).toFixed(1)}`)
+  .join(" ");
+const first = running.weeks[0];
+const last = running.weeks[running.weeks.length - 1];
+---
+<Base>
+  <section class="hero" aria-label="Introduction">
+    <h1>{site.name}</h1>
+    <p>{site.intro}</p>
+  </section>
+
+  <section class="row now" aria-label="Now">
+    <span>[ Now ]</span>
+    <ol>
+      {site.now.map((line, i) => <li><span class="n">{pad(i + 1)}</span>{line}</li>)}
+    </ol>
+    <div class="aside"><a href="#contact">→ More about me</a></div>
+  </section>
+
+  <section id="music" class="section" aria-labelledby="music-h">
+    <div class="section-head">
+      <h2 id="music-h">Playlists</h2>
+      <a class="label" href="#music">→ All playlists</a>
+    </div>
+    <div class="row featured">
+      <span class="label">[ This week ]</span>
+      <div>
+        <span class="featured-title">{music.featured.title}</span>
+        <span class="featured-note">{music.featured.note}</span>
+        <ol class="tracks">
+          {music.featured.tracks.map((t, i) => (
+            <li class="track">
+              <span class="track-num">{pad(i + 1)}</span>
+              <span><span class="track-title">{t.title}</span><span class="track-artist">{t.artist}</span></span>
+              <span class="track-note">{t.note ?? ""}</span>
+              <span class="track-time">{t.duration}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="aside">
+        <a href={music.featured.spotify}>→ Spotify</a>
+        <a href={music.featured.appleMusic}>→ Apple Music</a>
+        <span class="muted">{music.featured.meta}</span>
+      </div>
+    </div>
+    <ul class="index playlists">
+      {music.playlists.map((p, i) => (
+        <li>
+          <a href={p.href}>
+            <span class="n">{pad(i + 2)}</span>
+            <span class="title">{p.title}</span>
+            <span class="muted hide-s">{p.note}</span>
+            <span class="meta hide-s">{p.meta}</span>
+            <span class="go">→ Listen</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="writing" class="section" aria-labelledby="writing-h">
+    <div class="section-head">
+      <h2 id="writing-h">Writing</h2>
+      <a class="label" href="#writing">→ All writing</a>
+    </div>
+    <a class="row latest" href={writing.latest.href}>
+      <span class="label">[ Latest ]</span>
+      <span>
+        <span class="latest-title">{writing.latest.title}</span>
+        <span class="latest-excerpt">{writing.latest.excerpt}</span>
+      </span>
+      <span class="aside"><span>{writing.latest.date}</span><span class="muted">{writing.latest.readTime}</span><span class="u">Read</span></span>
+    </a>
+    <ul class="index posts">
+      {writing.posts.map((w, i) => (
+        <li>
+          <a href={w.href}>
+            <span class="n">{pad(i + 2)}</span>
+            <span class="meta hide-s">{w.date}</span>
+            <span class="title">{w.title}</span>
+            <span class="go hide-s">→ Read</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="row section" aria-label="Art and travels">
+    <span class="label">[ Art &amp; travels ]</span>
+    <div class="gallery">
+      {gallery.map((g, i) => (
+        <a class="tile" id={g.kind.toLowerCase()} href={g.href}>
+          <span class="tile-image">
+            {g.image ? <img src={g.image} alt={g.alt} loading="lazy" /> : <span>[ {g.kind === "Art" ? "Latest piece" : "Photo from the trip"} ]</span>}
+          </span>
+          <span class="tile-caption"><span><span class="n">{pad(i + 1)}</span>{g.title}</span><span class="label muted">{g.kind}</span></span>
+        </a>
+      ))}
+    </div>
+    <div class="aside"><a href="#art">→ See everything</a></div>
+  </section>
+
+  <section id="running" class="section" aria-labelledby="running-h">
+    <div class="section-head">
+      <h2 id="running-h">Running</h2>
+      <a class="label" href={running.profile}>→ Follow on Strava</a>
+    </div>
+    <div class="row">
+      <span class="label">[ {running.month} ]{running.example && <><br /><span class="muted">example numbers</span></>}</span>
+      <div>
+        <dl class="stats">
+          {running.stats.map((s) => (
+            <div class="stat">
+              <dt>{s.label}</dt>
+              <dd>{s.value}{s.unit && <span>{s.unit}</span>}</dd>
+            </div>
+          ))}
+        </dl>
+        <figure class="spark">
+          <svg viewBox="0 0 240 48" preserveAspectRatio="none" role="img" aria-label={`Kilometres per week over the last ${kms.length} weeks, from ${first.km} to ${last.km}`}>
+            <polyline points={spark} fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+          </svg>
+          <figcaption><span>{first.label}</span><span>Kilometres per week, from Strava</span><span>{last.label}</span></figcaption>
+        </figure>
+      </div>
+      <div class="aside"><span class="muted">Updated {running.updated}</span></div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,18 @@
+{
+  "example": true,
+  "month": "[Month YYYY]",
+  "updated": "[date]",
+  "profile": "#",
+  "stats": [
+    { "label": "Distance", "value": "128.4", "unit": "km" },
+    { "label": "Runs", "value": "14", "unit": "" },
+    { "label": "Moving time", "value": "11:52", "unit": "h" },
+    { "label": "Average pace", "value": "5:33", "unit": "/km" }
+  ],
+  "weeks": [
+    { "label": "Aug 4", "km": 22 }, { "label": "Aug 11", "km": 26 }, { "label": "Aug 18", "km": 19 },
+    { "label": "Aug 25", "km": 31 }, { "label": "Sep 1", "km": 28 }, { "label": "Sep 8", "km": 34 },
+    { "label": "Sep 15", "km": 24 }, { "label": "Sep 22", "km": 38 }, { "label": "Sep 29", "km": 30 },
+    { "label": "Oct 6", "km": 33 }, { "label": "Oct 13", "km": 29 }, { "label": "Oct 20", "km": 36 }
+  ]
+}

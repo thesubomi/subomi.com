@@ -1,0 +1,14 @@
+{
+  "latest": {
+    "title": "Leading a team. More than giving direction",
+    "excerpt": "...is about holding space. [Opening lines of the essay go here, two or three sentences that pull the reader in.]",
+    "date": "October 2025",
+    "readTime": "[6] min read",
+    "href": "#"
+  },
+  "posts": [
+    { "date": "July 2025", "title": "Your podcast is more than a podcast.", "href": "#" },
+    { "date": "[Month YYYY]", "title": "Your logo is not your brand.", "href": "#" },
+    { "date": "[Month YYYY]", "title": "Why your outreach is not working.", "href": "#" }
+  ]
+}

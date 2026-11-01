@@ -1,0 +1,19 @@
+{
+  "name": "Ọláṣùbòmí",
+  "intro": "I make playlists, write things down, draw, travel and run. Based in Warsaw [ Poland ]",
+  "description": "Ọláṣùbòmí Archibong's corner of the internet: playlists, writing, art, travels and running.",
+  "now": [
+    "Listening to [Track] by [Artist], on repeat since [day].",
+    "Writing about [what you are writing about].",
+    "Training for [race or goal]."
+  ],
+  "open": "Always happy to swap playlists, routes and good reads. Feel free to say hello.",
+  "email": "[your email]",
+  "elsewhere": [
+    { "label": "Instagram", "href": "#" },
+    { "label": "Spotify", "href": "#" },
+    { "label": "Strava", "href": "#" },
+    { "label": "LinkedIn", "href": "#" }
+  ],
+  "work": { "label": "colorteam.io", "href": "https://colorteam.io" }
+}

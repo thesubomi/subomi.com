@@ -1,0 +1,148 @@
+/* subomi.com
+   Built on the Ọláṣùbòmí design system: ink on paper, text first.
+   Brand colours (Castleton, Lime, Malachite, Sunglow, Lavender, Orange) stay out of the page;
+   colour on the site comes only from content: cover art, artwork, photos. */
+
+:root {
+  --ink: #232323;
+  --ink-muted: #5a5d5b;
+  --paper: #fbfbfb;
+  --hairline: #d9d9d6;
+  --placeholder: #ececec;
+  --focus: #005840;
+
+  --font: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  --gutter: clamp(16px, 4.4vw, 64px);
+  --max: 1312px;
+  --section: clamp(72px, 9vw, 120px);
+
+  --t-label: 13px;
+  --t-index: 10px;
+  --t-body: 18px;
+  --t-h2: clamp(32px, 3.6vw, 48px);
+
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--ink-muted); }
+a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+.u { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+img { max-width: 100%; display: block; }
+
+.skip { position: absolute; left: -9999px; top: 0; }
+.skip:focus { left: var(--gutter); top: 8px; background: var(--paper); padding: 8px 12px; z-index: 10; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding-left: max(var(--gutter), env(safe-area-inset-left)); padding-right: max(var(--gutter), env(safe-area-inset-right)); box-sizing: content-box; }
+
+.label { font-size: var(--t-label); }
+.muted { color: var(--ink-muted); }
+.n { font-size: var(--t-index); vertical-align: top; margin-right: 10px; font-variant-numeric: tabular-nums; }
+
+/* Header */
+.site-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-top: 20px; padding-bottom: 20px; font-size: var(--t-label); }
+.site-nav { display: flex; gap: 20px; }
+
+/* Hero */
+.hero { display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center; padding: clamp(48px, 8vw, 112px) 0 clamp(64px, 9vw, 128px); }
+.hero h1 { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(64px, 15vw, 216px); line-height: 1.02; letter-spacing: -0.045em; padding-top: 0.1em; }
+.hero p { margin: 0; max-width: 22ch; font-family: var(--font-display); font-size: clamp(24px, 3vw, 36px); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
+
+/* Three-column row: label | content | aside */
+.row { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 3fr); gap: 16px; align-items: start; padding-top: 20px; border-top: 1px solid var(--hairline); }
+.row > .aside { justify-self: end; text-align: right; font-size: var(--t-label); display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+
+.section { padding-bottom: var(--section); }
+.section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-bottom: 24px; }
+.section-head h2 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: var(--t-h2); line-height: 1; letter-spacing: -0.025em; }
+
+.now { font-size: var(--t-label); padding-bottom: var(--section); }
+.now ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: var(--t-body); }
+
+/* Featured playlist */
+.featured { padding-bottom: 40px; }
+.featured-title { display: block; font-family: var(--font-display); font-size: clamp(28px, 3vw, 40px); line-height: 1.05; letter-spacing: -0.02em; }
+.featured-note { display: block; margin-top: 6px; font-size: var(--t-body); line-height: 1.4; color: var(--ink-muted); }
+
+.tracks { list-style: none; margin: 20px 0 0; padding: 0; }
+.track { display: grid; grid-template-columns: 32px minmax(0, 1fr) minmax(0, 1.2fr) auto; gap: 16px; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--hairline); }
+.track-num, .track-time { font-size: var(--t-label); color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.track-title { font-size: 16px; }
+.track-artist { display: block; font-size: 14px; color: var(--ink-muted); }
+.track-note { font-size: 14px; color: var(--ink-muted); }
+
+/* Index rows */
+.index { list-style: none; margin: 0; padding: 0; }
+.index a { display: grid; gap: 16px; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--hairline); }
+.index.playlists a { grid-template-columns: 40px minmax(0, 4fr) minmax(0, 5fr) minmax(0, 2fr) 96px; }
+.index.posts a { grid-template-columns: 40px minmax(0, 2fr) minmax(0, 7fr) minmax(0, 2fr); }
+.index .title { font-size: var(--t-body); }
+.index .go { font-size: var(--t-label); text-align: right; }
+.index .meta { font-size: var(--t-label); color: var(--ink-muted); }
+
+/* Latest essay */
+.latest { padding-bottom: 40px; }
+.latest-title { display: block; font-family: var(--font-display); font-size: clamp(32px, 4vw, 56px); line-height: 1.02; letter-spacing: -0.03em; text-wrap: balance; }
+.latest-excerpt { display: block; margin-top: 14px; max-width: 46ch; font-size: var(--t-body); line-height: 1.45; color: var(--ink-muted); }
+
+/* Art and travels */
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px 16px; }
+.tile { display: flex; flex-direction: column; gap: 10px; }
+.tile-image { aspect-ratio: 4 / 5; max-width: 100%; background: var(--placeholder); border-radius: 2px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: var(--t-label); color: var(--ink-muted); }
+.tile-image img { width: 100%; height: 100%; object-fit: cover; }
+.tile-caption { display: flex; justify-content: space-between; gap: 8px; }
+
+/* Running */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0; }
+.stat { display: flex; flex-direction: column-reverse; gap: 6px; }
+.stat dt { font-size: var(--t-label); color: var(--ink-muted); }
+.stat dd { margin: 0; font-family: var(--font-display); font-size: var(--t-h2); line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.stat dd span { font-size: 15px; letter-spacing: 0; margin-left: 4px; }
+.spark { margin: 28px 0 0; display: flex; flex-direction: column; gap: 8px; }
+.spark svg { display: block; width: 100%; height: 48px; }
+.spark figcaption { display: flex; justify-content: space-between; gap: 8px; font-size: var(--t-label); color: var(--ink-muted); }
+
+/* Footer */
+.site-footer { padding-bottom: 32px; font-size: var(--t-label); }
+.footer-cols { display: flex; flex-wrap: wrap; gap: 32px 48px; }
+.footer-cols > div { display: flex; flex-direction: column; gap: 10px; }
+.footer-open { max-width: 30ch; font-size: var(--t-body); line-height: 1.35; }
+.footer-mark { display: flex; justify-content: center; padding-top: clamp(48px, 7vw, 96px); }
+.footer-mark svg { fill: var(--ink); }
+
+/* 404 */
+.lost { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 64px 0; }
+.lost h1 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: var(--t-h2); letter-spacing: -0.025em; }
+
+@media (max-width: 760px) {
+  .site-nav { display: none; }
+  .row { grid-template-columns: minmax(0, 1fr); }
+  .row > .aside { justify-self: start; text-align: left; align-items: flex-start; }
+  .track { grid-template-columns: 32px minmax(0, 1fr) auto; }
+  .track-note { display: none; }
+  .index.playlists a { grid-template-columns: 32px minmax(0, 1fr) auto; }
+  .index.posts a { grid-template-columns: 32px minmax(0, 1fr); }
+  .index .hide-s { display: none; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+html { scroll-behavior: smooth; }

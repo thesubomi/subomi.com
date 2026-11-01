@@ -1,0 +1,21 @@
+{
+  "featured": {
+    "title": "Sunday in Warsaw",
+    "note": "[One or two lines on why this playlist exists and when to play it.]",
+    "meta": "24 tracks · 1 h 32 min",
+    "spotify": "#",
+    "appleMusic": "#",
+    "tracks": [
+      { "title": "[Track title]", "artist": "[Artist]", "duration": "3:42", "note": "[A line on this track.]" },
+      { "title": "[Track title]", "artist": "[Artist]", "duration": "4:18", "note": "[A line on this track.]" },
+      { "title": "[Track title]", "artist": "[Artist]", "duration": "5:01" },
+      { "title": "[Track title]", "artist": "[Artist]", "duration": "3:27" }
+    ]
+  },
+  "playlists": [
+    { "title": "Long run, easy pace", "note": "[Why it exists, one line.]", "meta": "31 tracks", "href": "#" },
+    { "title": "Lagos, after midnight", "note": "[Why it exists, one line.]", "meta": "18 tracks", "href": "#" },
+    { "title": "Deep work", "note": "[Why it exists, one line.]", "meta": "40 tracks", "href": "#" },
+    { "title": "Sunday service", "note": "[Why it exists, one line.]", "meta": "22 tracks", "href": "#" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "subomi.com",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "strava": "node scripts/strava.mjs",
+    "build": "node scripts/strava.mjs && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.0.0",
+    "@astrojs/sitemap": "^3.2.0"
+  }
+}

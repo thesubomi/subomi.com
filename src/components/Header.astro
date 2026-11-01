@@ -1,0 +1,17 @@
+---
+const base = Astro.url.pathname === "/" ? "" : "/";
+const sections = [
+  ["Music", "music"],
+  ["Writing", "writing"],
+  ["Art", "art"],
+  ["Travels", "travels"],
+  ["Running", "running"],
+];
+---
+<header class="site-header wrap">
+  <a href="/">©Ọláṣùbòmí</a>
+  <nav class="site-nav" aria-label="Sections">
+    {sections.map(([label, id]) => <a href={`${base}#${id}`}>{label}</a>)}
+  </nav>
+  <a href={`${base}#contact`}>Say hello</a>
+</header>

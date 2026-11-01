@@ -1,0 +1,27 @@
+---
+import site from "../data/site.json";
+import OlaMark from "./OlaMark.astro";
+const year = new Date().getFullYear();
+---
+<footer id="contact" class="site-footer wrap">
+  <div class="row">
+    <span>©{year}</span>
+    <div class="footer-cols">
+      <div>
+        <span>[ Open ]</span>
+        <p class="footer-open" style="margin: 0;">{site.open}</p>
+        <span class="muted">{site.email}</span>
+      </div>
+      <div>
+        <span>[ Elsewhere ]</span>
+        {site.elsewhere.map((l) => <a href={l.href}>{l.label}</a>)}
+      </div>
+    </div>
+    <div class="aside">
+      <a class="muted" href={site.work.href}>[ Work ] {site.work.label}</a>
+    </div>
+  </div>
+  <div class="footer-mark">
+    <OlaMark label="Ọláṣùbòmí" />
+  </div>
+</footer>

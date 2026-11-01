@@ -1,0 +1,12 @@
+---
+// The OLA mark, exact paths from the Personal Brand Figma file. Drawn in currentColor.
+interface Props { height?: number; label?: string }
+const { height = 22, label } = Astro.props;
+const width = Math.round((height * 98) / 22);
+---
+<svg width={width} height={height} viewBox="0 0 98 22" role={label ? "img" : undefined} aria-label={label} aria-hidden={label ? undefined : "true"} focusable="false">
+  <path fill="currentColor" d="M55.8071 21.5898L66.9621 0L85.3796 0L73.8271 21.5898Z" />
+  <path fill="currentColor" d="M97.0691 21.5898L85.9141 0L67.4967 0L79.0491 21.5898Z" />
+  <path fill="currentColor" d="M24.2141 0L35.3691 21.5898H53.7865L42.2341 0H24.2141Z" />
+  <path fill="currentColor" d="M20.1094 0C22.8166 2.25075 24.541 5.64362 24.541 9.43945C24.5409 16.216 19.0471 21.7099 12.2705 21.71C5.49389 21.71 0 16.216 0 9.43945C0 5.64358 1.72435 2.25075 4.43164 0H20.1094Z" />
+</svg>

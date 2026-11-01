@@ -13,7 +13,7 @@ Everything on the home page lives in small JSON files. Edit a file, push to `mai
 | Name, intro line, the three [ Now ] lines, footer text, social links | `src/data/site.json` |
 | This week's playlist, its tracks, the other playlists | `src/data/music.json` |
 | Latest essay and earlier posts | `src/data/writing.json` |
-| Art and travel tiles (put images in `public/img/` and set `"image": "/img/name.jpg"`) | `src/data/gallery.json` |
+| Art and travel tiles (put images in `public/img/` and set `"image": "img/name.jpg"`) | `src/data/gallery.json` |
 | Running numbers (filled in from Strava, see below) | `src/data/running.json` |
 
 Text in `[brackets]` is placeholder copy waiting for the real thing.
@@ -62,5 +62,7 @@ Until the secrets are set, the page shows the example numbers in `running.json`,
 Every push to `main` builds and publishes the site (`.github/workflows/deploy.yml`). In the repository's Settings › Pages, Source must be set to **GitHub Actions**.
 
 ## Domain
+
+Right now the site lives at <https://thesubomi.github.io/subomi.com/>. `astro.config.mjs` switches to the root of subomi.com by itself as soon as `public/CNAME` exists.
 
 To serve the site at subomi.com, add a file `public/CNAME` containing `subomi.com`, then point the domain's DNS at GitHub Pages: four `A` records for `@` to 185.199.108.153, 185.199.109.153, 185.199.110.153 and 185.199.111.153, and a `CNAME` record for `www` to `thesubomi.github.io`. Then enter `subomi.com` under Settings › Pages › Custom domain and tick Enforce HTTPS once it is offered.

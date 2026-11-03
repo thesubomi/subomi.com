@@ -26,7 +26,7 @@ const trip = (await getTravels())[0];
 <section class="row now" aria-label="Now">
   <span>[ Now ]</span>
   <ol>
-    {site.now.map((line, i) => <li><span class="n">{pad(i + 1)}</span>{line}</li>)}
+    {site.now.map((line, i) => <li><span class="n">{pad(i + 1)}</span><span set:html={line} /></li>)}
   </ol>
   <div class="aside"><a href={url("about/")}>→ More about me</a></div>
 </section>

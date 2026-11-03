@@ -20,7 +20,7 @@ import { pad } from "../lib/site";
   <section class="row now" aria-label="Now">
     <span>[ Now ]</span>
     <ol>
-      {site.now.map((line, i) => <li><span class="n">{pad(i + 1)}</span>{line}</li>)}
+      {site.now.map((line, i) => <li><span class="n">{pad(i + 1)}</span><span set:html={line} /></li>)}
     </ol>
     <span></span>
   </section>

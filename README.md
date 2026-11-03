@@ -10,15 +10,22 @@ While `"maintenance": true` is set in `src/data/site.json`, subomi.com shows a "
 
 ## Editing content
 
-Everything on the home page lives in small JSON files. Edit a file, push to `main`, and the site rebuilds.
+Each article, playlist, art piece and trip is one Markdown file. The part between the `---` lines sets its title, date and so on; the text below is the body. Add a file (copy an existing one is easiest), push to `main`, and the site rebuilds. On GitHub you can do this in the browser: open the folder, then Add file › Create new file.
 
-| What | File |
-| --- | --- |
-| Name, intro line, the three [ Now ] lines, footer text, social links | `src/data/site.json` |
-| This week's playlist, its tracks, the other playlists | `src/data/music.json` |
-| Latest essay and earlier posts | `src/data/writing.json` |
-| Art and travel tiles (put images in `public/img/` and set `"image": "img/name.jpg"`) | `src/data/gallery.json` |
-| Running numbers (filled in from Strava, see below) | `src/data/running.json` |
+| What | Where | Becomes |
+| --- | --- | --- |
+| Articles | `src/content/writing/<name>.md` | `/writing/<name>/` |
+| Playlists (note, tracks, Spotify and Apple Music links) | `src/content/music/<name>.md` | `/music/<name>/` |
+| Art (put the image next to the file, set `image: ./name.jpg`) | `src/content/art/<name>.md` | `/art/<name>/` |
+| Trips (cover and photos in a folder beside the file) | `src/content/travels/<name>.md` | `/travels/<name>/` |
+| Name, intro line, [ Now ] lines, About text, footer, social links | `src/data/site.json` | every page |
+| Running numbers (filled in from Strava, see below) | `src/data/running.json` | home and `/running/` |
+
+- `draft: true` keeps an article (or any entry) off the live site until you change it to `false`.
+- `featured: true` on one playlist makes it "[ This week ]" on the home page and the music page.
+- A Spotify playlist link (`https://open.spotify.com/playlist/...`) adds Spotify's player to the playlist page automatically.
+- Only the month and year of a date are shown.
+- The fields each kind of file accepts are listed in `src/content.config.ts`.
 
 Text in `[brackets]` is placeholder copy waiting for the real thing.
 
@@ -28,9 +35,16 @@ Text in `[brackets]` is placeholder copy waiting for the real thing.
 | --- | --- |
 | `/` | `src/pages/index.astro` (maintenance page or the full home, see above) |
 | `/preview/` | `src/pages/preview.astro` (the full home, never indexed) |
+| `/music/`, `/music/<name>/` | `src/pages/music/` |
+| `/writing/`, `/writing/<name>/` | `src/pages/writing/` |
+| `/art/`, `/art/<name>/` | `src/pages/art/` |
+| `/travels/`, `/travels/<name>/` | `src/pages/travels/` |
+| `/running/` | `src/pages/running.astro` |
+| `/about/` | `src/pages/about.astro` |
+| `/rss.xml` | `src/pages/rss.xml.js` (all published articles) |
 | 404 | `src/pages/404.astro` |
 
-The home page content itself lives in `src/components/Home.astro`.
+The home page content itself lives in `src/components/Home.astro`. While maintenance mode is on, every page except the holding page is marked noindex and left out of the sitemap.
 
 Shared parts: `src/layouts/Base.astro` (head, share tags), `src/components/` (header, footer, OLA mark). Styles: `src/styles/site.css`.
 

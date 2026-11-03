@@ -1,0 +1,50 @@
+---
+import Base from "../../layouts/Base.astro";
+import { render } from "astro:content";
+import { Image } from "astro:assets";
+import TrackList from "../../components/TrackList.astro";
+import PlaylistLinks from "../../components/PlaylistLinks.astro";
+import { getMusic } from "../../lib/content";
+import { url, monthYear, spotifyEmbed, appleEmbed } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const all = await getMusic();
+  return all.map((playlist) => ({ params: { slug: playlist.id }, props: { playlist } }));
+}
+
+const { playlist } = Astro.props;
+const { Content } = await render(playlist);
+const d = playlist.data;
+const spotify = spotifyEmbed(d.spotify);
+const apple = !spotify ? appleEmbed(d.appleMusic) : null;
+const hasBody = !!playlist.body?.trim();
+---
+<Base title={d.title} description={d.note}>
+  <article>
+    <header class="article-head">
+      <a class="label" href={url("music/")}>← Music</a>
+      <h1>{d.title}</h1>
+      <p class="article-lede">{d.note}</p>
+    </header>
+
+    <div class="row playlist-body">
+      <div class="label article-meta">
+        <span>{monthYear(d.date)}</span>
+        {d.cover && <Image class="playlist-cover" src={d.cover} alt={`Cover of ${d.title}`} widths={[240, 480]} sizes="240px" />}
+      </div>
+      <div>
+        {spotify && (
+          <iframe class="player" title={`${d.title} on Spotify`} src={spotify} height="352" loading="lazy"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        )}
+        {apple && (
+          <iframe class="player" title={`${d.title} on Apple Music`} src={apple} height="450" loading="lazy"
+            allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"></iframe>
+        )}
+        {hasBody && <div class="prose playlist-note"><Content /></div>}
+        <TrackList tracks={d.tracks} />
+      </div>
+      <PlaylistLinks spotify={d.spotify} appleMusic={d.appleMusic} count={d.tracks.length} />
+    </div>
+  </article>
+</Base>

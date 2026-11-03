@@ -1,0 +1,18 @@
+---
+import { pad } from "../lib/site";
+interface Track { title: string; artist: string; duration?: string; note?: string }
+interface Props { tracks: Track[] }
+const { tracks } = Astro.props;
+---
+{tracks.length > 0 && (
+  <ol class="tracks">
+    {tracks.map((t, i) => (
+      <li class="track">
+        <span class="track-num">{pad(i + 1)}</span>
+        <span><span class="track-title">{t.title}</span><span class="track-artist">{t.artist}</span></span>
+        <span class="track-note">{t.note ?? ""}</span>
+        <span class="track-time">{t.duration ?? ""}</span>
+      </li>
+    ))}
+  </ol>
+)}

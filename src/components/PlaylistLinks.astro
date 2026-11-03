@@ -1,0 +1,12 @@
+---
+// The aside next to a playlist: where to listen, and its size.
+import { isReal } from "../lib/site";
+interface Props { spotify?: string; appleMusic?: string; count: number }
+const { spotify, appleMusic, count } = Astro.props;
+---
+<div class="aside">
+  {isReal(spotify) && <a href={spotify}>→ Spotify</a>}
+  {isReal(appleMusic) && <a href={appleMusic}>→ Apple Music</a>}
+  {!isReal(spotify) && !isReal(appleMusic) && <span class="muted">[ Streaming links ]</span>}
+  {count > 0 && <span class="muted">{count} tracks</span>}
+</div>

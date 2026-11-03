@@ -1,0 +1,33 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHead from "../components/SectionHead.astro";
+import site from "../data/site.json";
+import { pad } from "../lib/site";
+---
+<Base title="About" description="About Ọláṣùbòmí Archibong.">
+  <section class="page-intro">
+    <SectionHead title="About" level={1} />
+  </section>
+
+  <section class="row about" aria-label="About me">
+    <span class="label">[ Hello ]</span>
+    <div class="about-text">
+      {site.about.map((p) => <p>{p}</p>)}
+    </div>
+    <span></span>
+  </section>
+
+  <section class="row now" aria-label="Now">
+    <span>[ Now ]</span>
+    <ol>
+      {site.now.map((line, i) => <li><span class="n">{pad(i + 1)}</span>{line}</li>)}
+    </ol>
+    <span></span>
+  </section>
+
+  <section class="row section" aria-label="Work">
+    <span class="label">[ Work ]</span>
+    <p class="about-work">{site.workLine} <a class="u" href={site.work.href}>{site.work.label}</a></p>
+    <span></span>
+  </section>
+</Base>

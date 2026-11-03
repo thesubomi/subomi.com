@@ -1,0 +1,45 @@
+---
+import Base from "../../layouts/Base.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import TrackList from "../../components/TrackList.astro";
+import PlaylistLinks from "../../components/PlaylistLinks.astro";
+import { getMusic, getFeatured } from "../../lib/content";
+import { url, pad, monthYear } from "../../lib/site";
+
+const featured = await getFeatured();
+const others = (await getMusic()).filter((p) => p.id !== featured?.id);
+---
+<Base title="Music" description="Playlists by Ọláṣùbòmí Archibong, with a note on each.">
+  <section class="page-intro">
+    <SectionHead title="Music" level={1} />
+    <p class="page-lede">Playlists I keep coming back to, with a note on why each one exists.</p>
+  </section>
+
+  {featured && (
+    <section class="row featured" aria-label="This week">
+      <span class="label">[ This week ]</span>
+      <div>
+        <a class="featured-title" href={url(`music/${featured.id}/`)}>{featured.data.title}</a>
+        <span class="featured-note">{featured.data.note}</span>
+        <TrackList tracks={featured.data.tracks} />
+      </div>
+      <PlaylistLinks spotify={featured.data.spotify} appleMusic={featured.data.appleMusic} count={featured.data.tracks.length} />
+    </section>
+  )}
+
+  <section class="section" aria-label="All playlists">
+    <ul class="index playlists">
+      {others.map((p, i) => (
+        <li>
+          <a href={url(`music/${p.id}/`)}>
+            <span class="n">{pad(i + 2)}</span>
+            <span class="title">{p.data.title}</span>
+            <span class="muted hide-s">{p.data.note}</span>
+            <span class="meta hide-s">{monthYear(p.data.date)}</span>
+            <span class="go">→ Listen</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

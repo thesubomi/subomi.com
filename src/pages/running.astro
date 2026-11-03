@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHead from "../components/SectionHead.astro";
+import RunStats from "../components/RunStats.astro";
+import running from "../data/running.json";
+import { isReal } from "../lib/site";
+---
+<Base title="Running" description="Ọláṣùbòmí Archibong's running, synced from Strava.">
+  <section class="page-intro">
+    <SectionHead title="Running" level={1} link={isReal(running.profile) ? { href: running.profile, label: "Follow on Strava" } : undefined} />
+    <p class="page-lede">Every run syncs from Strava. The numbers update on their own each morning.</p>
+  </section>
+  <section class="section">
+    <RunStats />
+  </section>
+</Base>

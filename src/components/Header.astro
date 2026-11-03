@@ -1,21 +1,19 @@
 ---
-const home = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+import { home, url } from "../lib/site";
 const path = Astro.url.pathname.replace(/\/?$/, "/");
-// Section links stay on the page when the page holds the sections (home, or the preview).
-const onHome = path === home || path === `${home}preview/`;
-const base = onHome ? "" : home;
 const sections = [
-  ["Music", "music"],
-  ["Writing", "writing"],
-  ["Art", "art"],
-  ["Travels", "travels"],
-  ["Running", "running"],
+  ["Music", "music/"],
+  ["Writing", "writing/"],
+  ["Art", "art/"],
+  ["Travels", "travels/"],
+  ["Running", "running/"],
 ];
+const current = (p: string) => path.startsWith(url(p));
 ---
 <header class="site-header wrap">
-  <a href={home}>©Ọláṣùbòmí</a>
+  <a class="site-name" href={home}>©Ọláṣùbòmí</a>
   <nav class="site-nav" aria-label="Sections">
-    {sections.map(([label, id]) => <a href={`${base}#${id}`}>{label}</a>)}
+    {sections.map(([label, p]) => <a href={url(p)} aria-current={current(p) ? "page" : undefined}>{label}</a>)}
   </nav>
-  <a href={`${base}#contact`}>Say hello</a>
+  <a class="site-about" href={url("about/")} aria-current={current("about/") ? "page" : undefined}>About</a>
 </header>

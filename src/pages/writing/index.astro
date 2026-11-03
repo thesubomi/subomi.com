@@ -1,0 +1,38 @@
+---
+import Base from "../../layouts/Base.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import { getWriting } from "../../lib/content";
+import { url, pad, monthYear, readTime } from "../../lib/site";
+
+const posts = await getWriting();
+// Group by year, newest year first.
+const years = [...new Set(posts.map((p) => p.data.date.getUTCFullYear()))];
+let n = 0;
+---
+<Base title="Writing" description="Essays and notes by Ọláṣùbòmí Archibong.">
+  <section class="page-intro">
+    <SectionHead title="Writing" level={1} link={{ href: url("rss.xml"), label: "RSS" }} />
+    <p class="page-lede">Things I’m thinking through: building, leading, making and the small things that bring me joy.</p>
+  </section>
+
+  {years.map((year) => (
+    <section class="row year" aria-label={String(year)}>
+      <span class="label">[ {year} ]</span>
+      <ul class="index posts posts-full">
+        {posts.filter((p) => p.data.date.getUTCFullYear() === year).map((w) => (
+          <li>
+            <a href={url(`writing/${w.id}/`)}>
+              <span class="n">{pad(++n)}</span>
+              <span class="post-text">
+                <span class="title">{w.data.title}{w.data.draft && <span class="muted"> [ Draft ]</span>}</span>
+                {w.data.description && <span class="muted post-desc">{w.data.description}</span>}
+              </span>
+              <span class="meta hide-s">{monthYear(w.data.date)} · {readTime(w.body)}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <span></span>
+    </section>
+  ))}
+</Base>

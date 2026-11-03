@@ -1,0 +1,10 @@
+---
+// "Writing ............ → All writing". On a section's own page the heading is the page's h1.
+interface Props { title: string; id?: string; link?: { href: string; label: string }; level?: 1 | 2 }
+const { title, id, link, level = 2 } = Astro.props;
+const Tag = level === 1 ? "h1" : "h2";
+---
+<div class="section-head">
+  <Tag id={id} class="section-title">{title}</Tag>
+  {link && <a class="label" href={link.href}>→ {link.label}</a>}
+</div>

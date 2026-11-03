@@ -1,0 +1,45 @@
+---
+import Base from "../../layouts/Base.astro";
+import { render } from "astro:content";
+import { getWriting } from "../../lib/content";
+import { url, monthYear, readTime } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const posts = await getWriting();
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+  }));
+}
+
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+---
+<Base title={post.data.title} description={post.data.description ?? post.data.title} type="article">
+  <article class="article">
+    <header class="article-head">
+      <a class="label" href={url("writing/")}>← Writing</a>
+      <h1>{post.data.title}</h1>
+      {post.data.description && <p class="article-lede">{post.data.description}</p>}
+    </header>
+    <div class="row article-body">
+      <div class="label article-meta">
+        <span>{monthYear(post.data.date)}</span>
+        <span class="muted">{readTime(post.body)}</span>
+      </div>
+      <div class="prose">
+        <Content />
+      </div>
+      <span></span>
+    </div>
+  </article>
+
+  <nav class="row pager" aria-label="More writing">
+    <span class="label">[ More ]</span>
+    <div class="pager-links">
+      {older && <a href={url(`writing/${older.id}/`)}><span class="label muted">← Older</span><span class="pager-title">{older.data.title}</span></a>}
+      {newer && <a href={url(`writing/${newer.id}/`)}><span class="label muted">Newer →</span><span class="pager-title">{newer.data.title}</span></a>}
+    </div>
+    <div class="aside"><a href={url("writing/")}>→ All writing</a></div>
+  </nav>
+</Base>

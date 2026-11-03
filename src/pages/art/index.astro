@@ -1,0 +1,22 @@
+---
+import Base from "../../layouts/Base.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import Tile from "../../components/Tile.astro";
+import { getArt } from "../../lib/content";
+import { url, pad } from "../../lib/site";
+
+const pieces = await getArt();
+---
+<Base title="Art" description="Art by Ọláṣùbòmí Archibong.">
+  <section class="page-intro">
+    <SectionHead title="Art" level={1} />
+    <p class="page-lede">Things I draw and make, newest first.</p>
+  </section>
+  <section class="section">
+    <div class="gallery gallery-full">
+      {pieces.map((p, i) => (
+        <Tile href={url(`art/${p.id}/`)} title={p.data.title} kind={p.data.medium ?? "Art"} n={pad(i + 1)} image={p.data.image} alt={p.data.alt} placeholder="Piece" eager={i < 3} />
+      ))}
+    </div>
+  </section>
+</Base>

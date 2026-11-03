@@ -1,6 +1,7 @@
 ---
 import site from "../data/site.json";
 import OlaMark from "./OlaMark.astro";
+import { url } from "../lib/site";
 const year = new Date().getFullYear();
 ---
 <footer id="contact" class="site-footer wrap">
@@ -14,7 +15,8 @@ const year = new Date().getFullYear();
       </div>
       <div>
         <span>[ Elsewhere ]</span>
-        {site.elsewhere.map((l) => <a href={l.href}>{l.label}</a>)}
+        {site.elsewhere.filter((l) => l.href !== "#").map((l) => <a href={l.href}>{l.label}</a>)}
+        <a href={url("rss.xml")}>RSS</a>
       </div>
     </div>
     <div class="aside">

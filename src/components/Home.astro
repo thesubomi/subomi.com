@@ -20,7 +20,7 @@ const trip = (await getTravels())[0];
 ---
 <section class="hero" aria-label="Introduction">
   <h1>{site.name}</h1>
-  <p>{site.intro}</p>
+  <p>{site.intro.map((line, i) => <>{i > 0 && <br />}{line}</>)}</p>
 </section>
 
 <section class="row now" aria-label="Now">

@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
   schedule:
-    # Rebuild every morning so the running numbers stay current (06:13 UTC).
-    - cron: "13 6 * * *"
+    # Rebuild every hour so new Strava runs (and Spotify changes) appear soon after they happen.
+    - cron: "13 * * * *"
   workflow_dispatch:
 
 permissions:

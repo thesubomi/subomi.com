@@ -24,7 +24,7 @@ Each article, playlist, art piece and trip is one Markdown file. The part betwee
 
 - `draft: true` keeps an article (or any entry) off the live site until you change it to `false`.
 - `featured: true` on one playlist makes it "[ On repeat ]" on the home page and the music page. `order` sets the order of the list.
-- Each playlist's tracklist, length and cover come from its Spotify link: `scripts/spotify.mjs` reads them before every build (and the site rebuilds every morning), so editing a playlist on Spotify updates the site on its own. The last copy is saved in `src/data/spotify.json`, which the build falls back to if Spotify can't be reached.
+- Each playlist's tracklist, length and cover come from its Spotify link: `scripts/spotify.mjs` reads them before every build (and the site rebuilds every hour), so editing a playlist on Spotify updates the site on its own. The last copy is saved in `src/data/spotify.json`, which the build falls back to if Spotify can't be reached.
 - To add a note to one track, add `trackNotes:` to the playlist file, for example `trackNotes: { "Till I Collapse": "The morning alarm." }`, using the title exactly as Spotify shows it.
 - A new single: add it to `releases` in `src/data/artist.json`, newest first. The first one gets the player.
 - Only the month and year of a date are shown.
@@ -61,7 +61,7 @@ npm run build    # refreshes Strava numbers if credentials are set, then builds 
 
 ## Strava
 
-`scripts/strava.mjs` runs before every build. It signs in to the Strava API with a refresh token, sums this month's runs (distance, count, moving time, average pace) and the last 12 weeks of distance, and writes them to `src/data/running.json`. The token is used only during the build, never in the browser. The site also rebuilds every morning so the numbers stay current.
+`scripts/strava.mjs` runs before every build. It signs in to the Strava API with a refresh token, sums this month's runs (distance, count, moving time, average pace) and the last 12 weeks of distance, and writes them to `src/data/running.json`. The token is used only during the build, never in the browser. The site also rebuilds every hour, so a new run shows up within the hour.
 
 To switch it on:
 

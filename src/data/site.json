@@ -1,6 +1,11 @@
 {
   "maintenance": true,
   "name": "Ọláṣùbòmí",
+  "shareTitle": "Szubomi | Design • Run • Music",
+  "shareImage": {
+    "src": "og.jpg",
+    "alt": "Ọláṣùbòmí in a headband, headphones and red running glasses, the hills blurred behind him."
+  },
   "intro": "I make playlists, write things down, draw, travel and run. Based in Warsaw [ Poland ]",
   "description": "Ọláṣùbòmí Archibong's corner of the internet: music, writing, art, travels and running.",
   "now": [

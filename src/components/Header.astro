@@ -3,11 +3,11 @@ import { home, url } from "../lib/site";
 const path = Astro.url.pathname.replace(/\/?$/, "/");
 const sections = [
   ["Music", "music/"],
+  ["Running", "running/"],
   ["Writing", "writing/"],
+  ["Reads", "reads/"],
   ["Art", "art/"],
   ["Travels", "travels/"],
-  ["Running", "running/"],
-  ["Reads", "reads/"],
 ];
 const current = (p: string) => path.startsWith(url(p));
 ---

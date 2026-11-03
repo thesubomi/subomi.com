@@ -1,0 +1,18 @@
+---
+// One book: its cover, then title, author and subtitle.
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+interface Props { book: CollectionEntry<"reads">; size?: "large" | "small"; n?: string; eager?: boolean }
+const { book, size = "small", n, eager = false } = Astro.props;
+const { title, author, subtitle, cover } = book.data;
+const widths = size === "large" ? [320, 640] : [200, 400];
+const sizes = size === "large" ? "(max-width: 760px) 50vw, 260px" : "(max-width: 760px) 45vw, 180px";
+---
+<figure class:list={["book", `book-${size}`]}>
+  <Image class="book-cover" src={cover} alt={`Cover of ${title} by ${author}`} widths={widths} sizes={sizes} loading={eager ? "eager" : "lazy"} />
+  <figcaption>
+    <span class="book-title">{n && <span class="n">{n}</span>}{title}</span>
+    <span class="book-author">{author}</span>
+    {size === "large" && subtitle && <span class="book-subtitle">{subtitle}</span>}
+  </figcaption>
+</figure>

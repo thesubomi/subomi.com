@@ -234,3 +234,22 @@ html { scroll-behavior: smooth; }
 .soon-text { margin: 0; font-family: var(--font-display); font-size: clamp(20px, 2.2vw, 28px); line-height: 1.2; letter-spacing: -0.015em; color: var(--ink-muted); text-wrap: balance; }
 .now strong { font-weight: 600; }
 .now li { display: grid; grid-template-columns: auto 1fr; align-items: start; }
+
+/* Reads: book covers keep their own shape; colour comes from the covers */
+.book { margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.book-cover { display: block; width: 100%; height: auto; box-shadow: 0 0 0 1px var(--hairline); }
+.book figcaption { display: flex; flex-direction: column; gap: 2px; }
+.book-title { font-size: var(--t-body); }
+.book-author, .book-subtitle { font-size: var(--t-label); color: var(--ink-muted); }
+.book-feature .book { flex-direction: row; align-items: flex-end; gap: 24px; }
+.book-feature .book-cover { width: 220px; flex: none; }
+.book-large .book-title { font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 44px); line-height: 1.05; letter-spacing: -0.025em; }
+.book-large .book-author { font-size: var(--t-body); color: var(--ink); margin-top: 6px; }
+.book-large .book-subtitle { margin-top: 4px; max-width: 30ch; }
+.book-shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 40px 20px; align-items: start; }
+@media (max-width: 760px) {
+  .book-feature .book { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .book-feature .book-cover { width: 60%; }
+  .book-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
+}
+.book-shelf .book-cover { aspect-ratio: 2 / 3; object-fit: cover; }

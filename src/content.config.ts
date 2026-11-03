@@ -59,4 +59,20 @@ const travels = defineCollection({
     }),
 });
 
-export const collections = { writing, music, art, travels };
+// src/content/reads/<slug>.md → listed on subomi.com/reads/
+// status: "reading" shows at the top, "favourite" under it, "read" on the shelf (lowest order first).
+const reads = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/reads" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      author: z.string(),
+      subtitle: z.string().optional(),
+      cover: image(),
+      status: z.enum(["reading", "favourite", "read"]).default("read"),
+      order: z.number().default(99),
+      draft: z.boolean().default(false),
+    }),
+});
+
+export const collections = { writing, music, art, travels, reads };

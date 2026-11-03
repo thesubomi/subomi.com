@@ -14,3 +14,5 @@ export const getFeatured = async () => {
   const all = await getMusic();
   return all.find((p) => p.data.featured) ?? all[0];
 };
+
+export const getReads = async () => (await getCollection("reads", live)).sort((a, b) => a.data.order - b.data.order);

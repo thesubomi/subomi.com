@@ -2,11 +2,41 @@
 import Base from "../../layouts/Base.astro";
 import SectionHead from "../../components/SectionHead.astro";
 import ComingSoon from "../../components/ComingSoon.astro";
+import Book from "../../components/Book.astro";
+import { getReads } from "../../lib/content";
+import { pad } from "../../lib/site";
+
+const books = await getReads();
+const reading = books.filter((b) => b.data.status === "reading");
+const favourite = books.filter((b) => b.data.status === "favourite");
+const shelf = books.filter((b) => b.data.status === "read");
 ---
-<Base title="Reads" description="Books and articles Ọláṣùbòmí Archibong is reading.">
+<Base title="Reads" description="Books Ọláṣùbòmí Archibong is reading and has read.">
   <section class="page-intro">
     <SectionHead title="Reads" level={1} />
-    <p class="page-lede">Books and articles I’m reading, with a few notes.</p>
+    <p class="page-lede">Books I’m reading and books that stayed with me.</p>
   </section>
-  <ComingSoon text="The first reads are on their way." />
+
+  {books.length === 0 && <ComingSoon text="The first reads are on their way." />}
+
+  {reading.length > 0 && (
+    <section class="row section-tight" aria-label="Currently reading">
+      <span class="label">[ Currently reading ]</span>
+      <div class="book-feature">{reading.map((b) => <Book book={b} size="large" eager />)}</div>
+    </section>
+  )}
+
+  {favourite.length > 0 && (
+    <section class="row section-tight" aria-label="Favourite book of all time">
+      <span class="label">[ Favourite of all time ]</span>
+      <div class="book-feature">{favourite.map((b) => <Book book={b} size="large" eager />)}</div>
+    </section>
+  )}
+
+  {shelf.length > 0 && (
+    <section class="row section" aria-label="Read">
+      <span class="label">[ Read ]</span>
+      <div class="book-shelf span-2">{shelf.map((b, i) => <Book book={b} n={pad(i + 1)} />)}</div>
+    </section>
+  )}
 </Base>

@@ -4,11 +4,27 @@ import SectionHead from "../components/SectionHead.astro";
 import RunStats from "../components/RunStats.astro";
 import running from "../data/running.json";
 import { isReal, pad } from "../lib/site";
+import { Image } from "astro:assets";
+import photo1 from "../assets/running/01.jpg";
+import photo2 from "../assets/running/02.jpg";
+import photo3 from "../assets/running/03.jpg";
+
+const photos = [
+  { src: photo1, alt: "Ọláṣùbòmí running the Warszawska Dycha in black Nike kit, headband and red-lensed glasses, with other runners behind him." },
+  { src: photo2, alt: "Ọláṣùbòmí mid-race at the Warszawska Dycha, bib 33018, the crowd blurred behind him in the sun." },
+  { src: photo3, alt: "Ọláṣùbòmí in a headband, headphones and red running glasses, the hills blurred behind him." },
+];
 ---
 <Base title="Running" description="Ọláṣùbòmí Archibong's running, synced from Strava.">
   <section class="page-intro">
     <SectionHead title="Running" level={1} link={isReal(running.profile) ? { href: running.profile, label: "Follow on Strava" } : undefined} />
     <p class="page-lede">Every run syncs from Strava. The numbers update on their own each morning.</p>
+  </section>
+
+  <section class="run-gallery section-tight" aria-label="Photos from runs">
+    {photos.map((p, i) => (
+      <Image src={p.src} alt={p.alt} widths={[480, 800, 1200]} sizes="(max-width: 760px) 80vw, 33vw" loading={i === 0 ? "eager" : "lazy"} />
+    ))}
   </section>
 
   <section class="section-tight">

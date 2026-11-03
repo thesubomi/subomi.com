@@ -272,6 +272,10 @@ html { scroll-behavior: smooth; }
 .book-shelf .book-cover { aspect-ratio: 2 / 3; object-fit: cover; }
 
 /* Running: photo strip between the intro and the numbers */
+.run-gallery-wrap { margin: 0; }
+.run-caption { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 3fr); gap: 16px; padding-top: 14px; font-size: var(--t-label); }
+.run-caption span:last-child { justify-self: end; font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { .run-caption { grid-template-columns: auto 1fr auto; } }
 .run-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .run-gallery img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
 @media (max-width: 760px) {

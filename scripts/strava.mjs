@@ -47,13 +47,20 @@ try {
     return { label: `${MONTHS[start.getUTCMonth()]} ${start.getUTCDate()}`, km: Math.round(km * 10) / 10 };
   });
 
-  const month = runs.filter((r) => localDate(r) >= monthStart);
+  // Until the first run of a new month, the month panel keeps showing last month
+  // rather than a row of zeros.
+  let month = runs.filter((r) => localDate(r) >= monthStart);
+  let shown = monthStart;
+  if (!month.length) {
+    shown = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 1));
+    month = runs.filter((r) => localDate(r) >= shown && localDate(r) < monthStart);
+  }
   const year = runs.filter((r) => localDate(r) >= yearStart);
   const longest = year.reduce((m, r) => (r.distance > (m?.distance ?? 0) ? r : m), null);
 
   const data = {
     example: false,
-    month: `${MONTHS_LONG[now.getUTCMonth()]} ${now.getUTCFullYear()}`,
+    month: `${MONTHS_LONG[shown.getUTCMonth()]} ${shown.getUTCFullYear()}`,
     updated: `${now.getUTCDate()} ${MONTHS[now.getUTCMonth()]}`,
     profile: process.env.STRAVA_PROFILE_URL || current.profile,
     stats: totals(month),

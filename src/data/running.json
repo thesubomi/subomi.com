@@ -1,6 +1,6 @@
 {
   "example": true,
-  "month": "[Month YYYY]",
+  "month": "November 2026",
   "updated": "[date]",
   "profile": "#",
   "stats": [
@@ -9,10 +9,26 @@
     { "label": "Moving time", "value": "11:52", "unit": "h" },
     { "label": "Average pace", "value": "5:33", "unit": "/km" }
   ],
+  "year": {
+    "label": "2026",
+    "stats": [
+      { "label": "Distance", "value": "1,204.6", "unit": "km" },
+      { "label": "Runs", "value": "131", "unit": "" },
+      { "label": "Moving time", "value": "112:40", "unit": "h" },
+      { "label": "Longest run", "value": "21.1", "unit": "km" }
+    ]
+  },
+  "recent": [
+    { "name": "[Run name]", "date": "2 Nov", "distance": "10.2", "time": "54:12", "pace": "5:19" },
+    { "name": "[Run name]", "date": "31 Oct", "distance": "6.4", "time": "35:40", "pace": "5:34" },
+    { "name": "[Run name]", "date": "29 Oct", "distance": "8.0", "time": "44:05", "pace": "5:31" },
+    { "name": "[Run name]", "date": "27 Oct", "distance": "5.1", "time": "27:58", "pace": "5:29" },
+    { "name": "[Run name]", "date": "25 Oct", "distance": "16.3", "time": "1:31:20", "pace": "5:36" }
+  ],
   "weeks": [
-    { "label": "Aug 4", "km": 22 }, { "label": "Aug 11", "km": 26 }, { "label": "Aug 18", "km": 19 },
-    { "label": "Aug 25", "km": 31 }, { "label": "Sep 1", "km": 28 }, { "label": "Sep 8", "km": 34 },
-    { "label": "Sep 15", "km": 24 }, { "label": "Sep 22", "km": 38 }, { "label": "Sep 29", "km": 30 },
-    { "label": "Oct 6", "km": 33 }, { "label": "Oct 13", "km": 29 }, { "label": "Oct 20", "km": 36 }
+    { "label": "Aug 17", "km": 22 }, { "label": "Aug 24", "km": 26 }, { "label": "Aug 31", "km": 19 },
+    { "label": "Sep 7", "km": 31 }, { "label": "Sep 14", "km": 28 }, { "label": "Sep 21", "km": 34 },
+    { "label": "Sep 28", "km": 24 }, { "label": "Oct 5", "km": 38 }, { "label": "Oct 12", "km": 30 },
+    { "label": "Oct 19", "km": 33 }, { "label": "Oct 26", "km": 29 }, { "label": "Nov 2", "km": 36 }
   ]
 }

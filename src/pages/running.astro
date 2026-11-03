@@ -3,14 +3,45 @@ import Base from "../layouts/Base.astro";
 import SectionHead from "../components/SectionHead.astro";
 import RunStats from "../components/RunStats.astro";
 import running from "../data/running.json";
-import { isReal } from "../lib/site";
+import { isReal, pad } from "../lib/site";
 ---
 <Base title="Running" description="Ọláṣùbòmí Archibong's running, synced from Strava.">
   <section class="page-intro">
     <SectionHead title="Running" level={1} link={isReal(running.profile) ? { href: running.profile, label: "Follow on Strava" } : undefined} />
     <p class="page-lede">Every run syncs from Strava. The numbers update on their own each morning.</p>
   </section>
-  <section class="section">
+
+  <section class="section-tight">
     <RunStats />
   </section>
+
+  {running.year && (
+    <section class="row section-tight" aria-label={`Running in ${running.year.label}`}>
+      <span class="label">[ {running.year.label} so far ]</span>
+      <dl class="stats span-2">
+        {running.year.stats.map((s) => (
+          <div class="stat">
+            <dt>{s.label}</dt>
+            <dd>{s.value}{s.unit && <span>{s.unit}</span>}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )}
+
+  {running.recent?.length > 0 && (
+    <section class="row section" aria-label="Recent runs">
+      <span class="label">[ Recent runs ]</span>
+      <ol class="tracks runs">
+        {running.recent.map((r, i) => (
+          <li class="track run">
+            <span class="track-num">{pad(i + 1)}</span>
+            <span><span class="track-title">{r.name}</span><span class="track-artist">{r.date}</span></span>
+            <span class="run-figures"><span>{r.distance} km</span><span class="muted">{r.time}</span><span class="muted">{r.pace} /km</span></span>
+          </li>
+        ))}
+      </ol>
+      <span></span>
+    </section>
+  )}
 </Base>

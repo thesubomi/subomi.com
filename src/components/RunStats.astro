@@ -11,8 +11,8 @@ const first = running.weeks[0];
 const last = running.weeks[running.weeks.length - 1];
 ---
 <div class="row">
-  <span class="label">[ {running.month} ]{running.example && <><br /><span class="muted">example numbers</span></>}</span>
-  <div>
+  <span class="label">[ {running.month} ]{running.example && <><br /><span class="muted">example numbers</span></>}<br /><span class="muted">Updated {running.updated}</span></span>
+  <div class="span-2">
     <dl class="stats">
       {running.stats.map((s) => (
         <div class="stat">
@@ -28,5 +28,4 @@ const last = running.weeks[running.weeks.length - 1];
       <figcaption><span>{first.label}</span><span>Kilometres per week, from Strava</span><span>{last.label}</span></figcaption>
     </figure>
   </div>
-  <div class="aside"><span class="muted">Updated {running.updated}</span></div>
 </div>

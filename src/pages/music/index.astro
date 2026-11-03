@@ -3,43 +3,54 @@ import Base from "../../layouts/Base.astro";
 import SectionHead from "../../components/SectionHead.astro";
 import TrackList from "../../components/TrackList.astro";
 import PlaylistLinks from "../../components/PlaylistLinks.astro";
+import MyMusic from "../../components/MyMusic.astro";
 import { getMusic, getFeatured } from "../../lib/content";
-import { url, pad, monthYear } from "../../lib/site";
+import { playlist } from "../../lib/music";
+import { url, pad } from "../../lib/site";
 
 const featured = await getFeatured();
-const others = (await getMusic()).filter((p) => p.id !== featured?.id);
+const f = featured && playlist(featured);
+const all = await getMusic();
 ---
-<Base title="Music" description="Playlists by Ọláṣùbòmí Archibong, with a note on each.">
+<Base title="Music" description="Szubomi's Afro-gospel music and the playlists Ọláṣùbòmí Archibong keeps coming back to.">
   <section class="page-intro">
     <SectionHead title="Music" level={1} />
-    <p class="page-lede">Playlists I keep coming back to, with a note on why each one exists.</p>
+    <p class="page-lede">The music I make, and the playlists I keep coming back to.</p>
   </section>
 
-  {featured && (
-    <section class="row featured" aria-label="This week">
-      <span class="label">[ This week ]</span>
+  <section aria-label="My music" class="music-block">
+    <MyMusic full />
+  </section>
+
+  {featured && f && (
+    <section class="row featured" aria-label="On repeat">
+      <span class="label">[ On repeat ]</span>
       <div>
         <a class="featured-title" href={url(`music/${featured.id}/`)}>{featured.data.title}</a>
         <span class="featured-note">{featured.data.note}</span>
-        <TrackList tracks={featured.data.tracks} />
+        <TrackList tracks={f.tracks} limit={6} />
+        <a class="label more-tracks" href={url(`music/${featured.id}/`)}>→ All {f.count} tracks</a>
       </div>
-      <PlaylistLinks spotify={featured.data.spotify} appleMusic={featured.data.appleMusic} count={featured.data.tracks.length} />
+      <PlaylistLinks spotify={featured.data.spotify} appleMusic={featured.data.appleMusic} meta={f.meta} />
     </section>
   )}
 
-  <section class="section" aria-label="All playlists">
-    <ul class="index playlists">
-      {others.map((p, i) => (
+  <section class="row section" aria-label="All playlists">
+    <span class="label">[ Playlists ]</span>
+    <ul class="index playlists playlists-full">
+      {all.map((p, i) => (
         <li>
           <a href={url(`music/${p.id}/`)}>
-            <span class="n">{pad(i + 2)}</span>
-            <span class="title">{p.data.title}</span>
-            <span class="muted hide-s">{p.data.note}</span>
-            <span class="meta hide-s">{monthYear(p.data.date)}</span>
-            <span class="go">→ Listen</span>
+            <span class="n">{pad(i + 1)}</span>
+            <span class="post-text">
+              <span class="title">{p.data.title}</span>
+              <span class="muted post-desc">{p.data.note}</span>
+            </span>
+            <span class="meta hide-s">{playlist(p).meta}</span>
           </a>
         </li>
       ))}
     </ul>
+    <span></span>
   </section>
 </Base>

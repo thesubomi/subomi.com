@@ -170,10 +170,19 @@ a.featured-title:hover { color: var(--ink-muted); }
 .pager-links a { display: flex; flex-direction: column; gap: 6px; }
 .pager-title { font-size: var(--t-body); }
 
-.player { display: block; width: 100%; border: 0; border-radius: 12px; margin-bottom: 24px; }
-.playlist-note { margin-bottom: 24px; }
-.playlist-body .tracks { margin-top: 0; }
-.playlist-cover { width: 100%; max-width: 160px; height: auto; margin-top: 12px; border-radius: 2px; }
+.player { display: block; width: 100%; height: 152px; border: 0; border-radius: 12px; margin: 20px 0 4px; }
+.playlist-note { margin-bottom: 8px; }
+.playlist-cover { display: block; width: 100%; max-width: 200px; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 2px; margin-bottom: 12px; }
+.more-tracks { display: inline-block; margin-top: 14px; }
+.my-music { padding-bottom: 48px; }
+.my-music-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.my-music-bio { margin: 12px 0 0; max-width: 60ch; font-size: var(--t-body); line-height: 1.55; }
+.releases { margin-top: 16px; }
+.releases .track-note { color: var(--ink-muted); font-size: var(--t-label); }
+a.track-time { color: var(--ink); text-align: right; }
+.music-block { padding-bottom: 24px; }
+.index.playlists-full a { grid-template-columns: 40px minmax(0, 1fr) auto; }
+.section-head + .row.featured { padding-bottom: 40px; }
 
 .piece { margin: 0 0 40px; }
 .piece img { width: 100%; height: auto; max-height: 85vh; object-fit: contain; background: var(--placeholder); border-radius: 2px; }
@@ -198,7 +207,8 @@ a.featured-title:hover { color: var(--ink-muted); }
   .site-nav { order: 3; width: 100%; gap: 16px; overflow-x: auto; scrollbar-width: none; }
   .site-nav::-webkit-scrollbar { display: none; }
   .pager-links { grid-template-columns: minmax(0, 1fr); }
-  .index.posts-full a { grid-template-columns: 32px minmax(0, 1fr); }
+  .index.posts-full a, .index.playlists-full a { grid-template-columns: 32px minmax(0, 1fr); }
+  .releases .track-note { display: none; }
   .row { grid-template-columns: minmax(0, 1fr); }
   .row > .aside { justify-self: start; text-align: left; align-items: flex-start; }
   .track { grid-template-columns: 32px minmax(0, 1fr) auto; }

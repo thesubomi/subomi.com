@@ -5,7 +5,7 @@ const live = ({ data }: { data: { draft?: boolean } }) => import.meta.env.DEV ||
 const newest = (a: { data: { date: Date } }, b: { data: { date: Date } }) => b.data.date.valueOf() - a.data.date.valueOf();
 
 export const getWriting = async () => (await getCollection("writing", live)).sort(newest);
-export const getMusic = async () => (await getCollection("music", live)).sort(newest);
+export const getMusic = async () => (await getCollection("music", live)).sort((a, b) => a.data.order - b.data.order);
 export const getArt = async () => (await getCollection("art", live)).sort(newest);
 export const getTravels = async () => (await getCollection("travels", live)).sort(newest);
 

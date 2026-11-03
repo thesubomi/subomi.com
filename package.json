@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "strava": "node scripts/strava.mjs",
-    "build": "node scripts/strava.mjs && astro build",
+    "spotify": "node scripts/spotify.mjs",
+    "build": "node scripts/spotify.mjs && node scripts/strava.mjs && astro build",
     "preview": "astro preview"
   },
   "dependencies": {

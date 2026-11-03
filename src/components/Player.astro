@@ -1,0 +1,11 @@
+---
+// Spotify's compact player for a playlist or track link. Renders nothing for other links.
+import { spotifyEmbed } from "../lib/site";
+interface Props { link?: string; title: string }
+const { link, title } = Astro.props;
+const src = spotifyEmbed(link);
+---
+{src && (
+  <iframe class="player" title={`${title} on Spotify`} src={src} width="100%" height="152" loading="lazy"
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+)}

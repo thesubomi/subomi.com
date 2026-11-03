@@ -1,0 +1,10 @@
+{
+  "name": "Szubomi",
+  "genre": "Afro-gospel",
+  "spotify": "https://open.spotify.com/artist/5PWysnp1CrtHxCRqZrb2Q0",
+  "bio": "I make Afro-gospel music as Szubomi. I’m from the southern part of Nigeria and grew up in Lagos, and music is the creative outlet where I get to express myself in new ways. My first single, Yahweh, came to life during uneven times in my life; making it was a sign that the worst was behind me and the future ahead is bright as a new day. Yahweh II, with Charles Miles, followed a month later. More singles coming.",
+  "releases": [
+    { "title": "Yahweh II", "with": "Charles Miles", "spotify": "https://open.spotify.com/track/2aGbxdYDcrYrEjjDll2GD6" },
+    { "title": "Yahweh", "spotify": "https://open.spotify.com/track/2F8z5tHvhBRWHkjHgGePPn" }
+  ]
+}

@@ -1,12 +1,13 @@
 ---
 import { pad } from "../lib/site";
-interface Track { title: string; artist: string; duration?: string; note?: string }
-interface Props { tracks: Track[] }
-const { tracks } = Astro.props;
+import type { Track } from "../lib/music";
+interface Props { tracks: Track[]; limit?: number }
+const { tracks, limit } = Astro.props;
+const shown = limit ? tracks.slice(0, limit) : tracks;
 ---
-{tracks.length > 0 && (
+{shown.length > 0 && (
   <ol class="tracks">
-    {tracks.map((t, i) => (
+    {shown.map((t, i) => (
       <li class="track">
         <span class="track-num">{pad(i + 1)}</span>
         <span><span class="track-title">{t.title}</span><span class="track-artist">{t.artist}</span></span>

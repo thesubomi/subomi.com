@@ -15,15 +15,18 @@ Each article, playlist, art piece and trip is one Markdown file. The part betwee
 | What | Where | Becomes |
 | --- | --- | --- |
 | Articles | `src/content/writing/<name>.md` | `/writing/<name>/` |
-| Playlists (note, tracks, Spotify and Apple Music links) | `src/content/music/<name>.md` | `/music/<name>/` |
+| Playlists (title, one-line note, paragraph, Spotify link) | `src/content/music/<name>.md` | `/music/<name>/` |
+| Szubomi: bio and releases | `src/data/artist.json` | `/music/` and home |
 | Art (put the image next to the file, set `image: ./name.jpg`) | `src/content/art/<name>.md` | `/art/<name>/` |
 | Trips (cover and photos in a folder beside the file) | `src/content/travels/<name>.md` | `/travels/<name>/` |
 | Name, intro line, [ Now ] lines, About text, footer, social links | `src/data/site.json` | every page |
 | Running numbers (filled in from Strava, see below) | `src/data/running.json` | home and `/running/` |
 
 - `draft: true` keeps an article (or any entry) off the live site until you change it to `false`.
-- `featured: true` on one playlist makes it "[ This week ]" on the home page and the music page.
-- A Spotify playlist link (`https://open.spotify.com/playlist/...`) adds Spotify's player to the playlist page automatically.
+- `featured: true` on one playlist makes it "[ On repeat ]" on the home page and the music page. `order` sets the order of the list.
+- Each playlist's tracklist, length and cover come from its Spotify link: `scripts/spotify.mjs` reads them before every build (and the site rebuilds every morning), so editing a playlist on Spotify updates the site on its own. The last copy is saved in `src/data/spotify.json`, which the build falls back to if Spotify can't be reached.
+- To add a note to one track, add `trackNotes:` to the playlist file, for example `trackNotes: { "Till I Collapse": "The morning alarm." }`, using the title exactly as Spotify shows it.
+- A new single: add it to `releases` in `src/data/artist.json`, newest first. The first one gets the player.
 - Only the month and year of a date are shown.
 - The fields each kind of file accepts are listed in `src/content.config.ts`.
 

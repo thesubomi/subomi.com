@@ -8,9 +8,11 @@ import TrackList from "./TrackList.astro";
 import PlaylistLinks from "./PlaylistLinks.astro";
 import RunStats from "./RunStats.astro";
 import Tile from "./Tile.astro";
-import running from "../data/running.json";
+import MyMusic from "./MyMusic.astro";
+import { playlist } from "../lib/music";
 
 const featured = await getFeatured();
+const f = featured && playlist(featured);
 const playlists = (await getMusic()).filter((p) => p.id !== featured?.id).slice(0, 4);
 const [latest, ...earlier] = (await getWriting()).slice(0, 4);
 const art = (await getArt())[0];
@@ -31,15 +33,17 @@ const trip = (await getTravels())[0];
 
 <section class="section" aria-labelledby="music-h">
   <SectionHead title="Music" id="music-h" link={{ href: url("music/"), label: "All music" }} />
-  {featured && (
+  <MyMusic />
+  {featured && f && (
     <div class="row featured">
-      <span class="label">[ This week ]</span>
+      <span class="label">[ On repeat ]</span>
       <div>
         <a class="featured-title" href={url(`music/${featured.id}/`)}>{featured.data.title}</a>
         <span class="featured-note">{featured.data.note}</span>
-        <TrackList tracks={featured.data.tracks} />
+        <TrackList tracks={f.tracks} limit={5} />
+        <a class="label more-tracks" href={url(`music/${featured.id}/`)}>→ All {f.count} tracks</a>
       </div>
-      <PlaylistLinks spotify={featured.data.spotify} appleMusic={featured.data.appleMusic} count={featured.data.tracks.length} />
+      <PlaylistLinks spotify={featured.data.spotify} appleMusic={featured.data.appleMusic} meta={f.meta} />
     </div>
   )}
   <ul class="index playlists">
@@ -49,7 +53,7 @@ const trip = (await getTravels())[0];
           <span class="n">{pad(i + 2)}</span>
           <span class="title">{p.data.title}</span>
           <span class="muted hide-s">{p.data.note}</span>
-          <span class="meta hide-s">{p.data.tracks.length ? `${p.data.tracks.length} tracks` : ""}</span>
+          <span class="meta hide-s">{playlist(p).count ? `${playlist(p).count} tracks` : ""}</span>
           <span class="go">→ Listen</span>
         </a>
       </li>

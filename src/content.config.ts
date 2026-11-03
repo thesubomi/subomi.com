@@ -16,22 +16,19 @@ const writing = defineCollection({
 });
 
 // src/content/music/<slug>.md → subomi.com/music/<slug>/
+// The tracklist and cover come from Spotify (src/data/spotify.json, refreshed on every build).
 const music = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/music" }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      note: z.string(), // one or two lines on why the playlist exists
-      date: z.coerce.date(),
-      featured: z.boolean().default(false), // the one shown as "[ This week ]"
-      spotify: z.string().default("#"),
-      appleMusic: z.string().default("#"),
-      cover: image().optional(),
-      tracks: z
-        .array(z.object({ title: z.string(), artist: z.string(), duration: z.string().optional(), note: z.string().optional() }))
-        .default([]),
-      draft: z.boolean().default(false),
-    }),
+  schema: z.object({
+    title: z.string(),
+    note: z.string(), // one line, shown on lists; the paragraph below the --- is the full note
+    order: z.number().default(99), // listed lowest first
+    featured: z.boolean().default(false), // the one shown as "[ On repeat ]"
+    spotify: z.string().default("#"),
+    appleMusic: z.string().default("#"),
+    trackNotes: z.record(z.string()).default({}), // { "Track title": "A line on this track." }
+    draft: z.boolean().default(false),
+  }),
 });
 
 // src/content/art/<slug>.md → subomi.com/art/<slug>/

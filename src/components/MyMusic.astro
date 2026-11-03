@@ -1,0 +1,31 @@
+---
+// "[ My music ]": Szubomi, his releases and a player for the newest one (src/data/artist.json).
+import Player from "./Player.astro";
+import { artist, releases } from "../lib/music";
+import { pad, monthYear } from "../lib/site";
+interface Props { full?: boolean }
+const { full = false } = Astro.props;
+const [latest] = releases;
+---
+<div class="row my-music">
+  <span class="label">[ My music ]</span>
+  <div class="my-music-main">
+    <div class="my-music-head">
+      <span class="featured-title">{artist.name}</span>
+      <span class="label muted">{artist.genre}</span>
+    </div>
+    {full && <p class="my-music-bio">{artist.bio}</p>}
+    {latest && <Player link={latest.spotify} title={latest.title} />}
+    <ol class="tracks releases">
+      {releases.map((r, i) => (
+        <li class="track">
+          <span class="track-num">{pad(i + 1)}</span>
+          <span><span class="track-title">{r.title}</span><span class="track-artist">{r.with ? `with ${r.with}` : "Single"}</span></span>
+          <span class="track-note">{r.released ? monthYear(r.released) : ""}</span>
+          <a class="track-time" href={r.spotify}>→ Listen</a>
+        </li>
+      ))}
+    </ol>
+  </div>
+  <div class="aside"><a href={artist.spotify}>→ {artist.name} on Spotify</a></div>
+</div>

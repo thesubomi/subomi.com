@@ -11,11 +11,11 @@ import Tile from "./Tile.astro";
 import MyMusic from "./MyMusic.astro";
 import { playlist } from "../lib/music";
 import { getImage } from "astro:assets";
-import cutoutSrc from "../assets/hero-cutout.png";
+import wideSrc from "../assets/hero-wide.jpg";
 import portraitSrc from "../assets/hero-portrait.jpg";
 
-// Desktop shows the cut-out, where the head rises out of the frame over the name; phones show the portrait.
-const cutout = await getImage({ src: cutoutSrc, widths: [1000, 1500, 2000], format: "webp" });
+// Desktop shows a wide crop of the photo under the name; phones show the full portrait.
+const wide = await getImage({ src: wideSrc, widths: [960, 1438], format: "webp" });
 const portrait = await getImage({ src: portraitSrc, widths: [480, 800, 1200], format: "webp" });
 
 const featured = await getFeatured();
@@ -28,7 +28,7 @@ const trip = (await getTravels())[0];
 <section class="hero" aria-label="Introduction">
   <h1>{site.name}</h1>
   <picture class="hero-photo">
-    <source media="(min-width: 761px)" srcset={cutout.srcSet.attribute} sizes="min(66vw, 980px)" width={cutoutSrc.width} height={cutoutSrc.height} />
+    <source media="(min-width: 761px)" srcset={wide.srcSet.attribute} sizes="min(66vw, 980px)" width={wideSrc.width} height={wideSrc.height} />
     <img src={portrait.src} srcset={portrait.srcSet.attribute} sizes="72vw" width={portraitSrc.width} height={portraitSrc.height} alt="Ọláṣùbòmí in a headband, headphones and red running glasses, one hand at his face." fetchpriority="high" decoding="async" />
   </picture>
   <p>{site.intro.map((line, i) => <>{i > 0 && <br />}{line}</>)}</p>

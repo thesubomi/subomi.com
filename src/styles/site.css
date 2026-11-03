@@ -70,8 +70,7 @@ img { max-width: 100%; display: block; }
 .hero { display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center; padding: clamp(48px, 8vw, 112px) 0 clamp(64px, 9vw, 128px); }
 .hero h1 { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(64px, 15vw, 216px); line-height: 1.02; letter-spacing: -0.045em; padding-top: 0.1em; }
 .hero p { margin: 0; max-width: 22ch; font-family: var(--font-display); font-size: clamp(24px, 3vw, 36px); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
-.hero h1 { position: relative; z-index: 0; }
-.hero-photo { --hw: min(66vw, 980px); position: relative; z-index: 1; display: block; width: var(--hw); margin-top: calc(var(--hw) * -0.203 + 12px); }
+.hero-photo { --hw: min(66vw, 980px); display: block; width: var(--hw); margin-top: 12px; }
 .hero-photo img { width: 100%; height: auto; }
 
 /* Three-column row: label | content | aside */

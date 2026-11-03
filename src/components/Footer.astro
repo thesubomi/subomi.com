@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
       <div>
         <span>[ Open ]</span>
         <p class="footer-open" style="margin: 0;">{site.open}</p>
-        <span class="muted">{site.email}</span>
+        <a class="u" href={`mailto:${site.email}`}>{site.email}</a>
       </div>
       <div>
         <span>[ Elsewhere ]</span>

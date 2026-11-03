@@ -12,7 +12,7 @@ import { pad } from "../lib/site";
   <section class="row about" aria-label="About me">
     <span class="label">[ Hello ]</span>
     <div class="about-text">
-      {site.about.map((p) => <p>{p}</p>)}
+      {site.about.map((p) => <p set:html={p} />)}
     </div>
     <span></span>
   </section>

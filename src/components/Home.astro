@@ -32,7 +32,6 @@ const trip = (await getTravels())[0];
     <img src={portrait.src} srcset={portrait.srcSet.attribute} sizes="72vw" width={portraitSrc.width} height={portraitSrc.height} alt="Ọláṣùbòmí in a headband, headphones and red running glasses, one hand at his face." fetchpriority="high" decoding="async" />
   </picture>
   <p>{site.intro.map((line, i) => <>{i > 0 && <br />}{line}</>)}</p>
-  <a class="hero-scroll label" href="#now">[ Scroll ]</a>
 </section>
 
 <section class="row now" id="now" aria-label="Now">
@@ -112,10 +111,3 @@ const trip = (await getTravels())[0];
   <SectionHead title="Running" id="running-h" link={{ href: url("running/"), label: "More running" }} />
   <RunStats />
 </section>
-
-<script>
-  const root = document.documentElement;
-  const update = () => root.classList.toggle("scrolled", window.scrollY > 40);
-  update();
-  window.addEventListener("scroll", update, { passive: true });
-</script>

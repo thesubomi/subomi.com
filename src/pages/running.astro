@@ -22,16 +22,16 @@ const photos = [
   </section>
 
   <figure class="run-gallery-wrap section-tight">
+    <figcaption class="run-caption">
+      <span>[ September 2026 ]</span>
+      <span>Nice to Fit You (10km)</span>
+      <span>Time: 51:20</span>
+    </figcaption>
     <div class="run-gallery" role="group" aria-label="Photos from runs">
       {photos.map((p, i) => (
         <Image src={p.src} alt={p.alt} widths={[480, 800, 1200]} sizes="(max-width: 760px) 80vw, 33vw" loading={i === 0 ? "eager" : "lazy"} />
       ))}
     </div>
-    <figcaption class="run-caption">
-      <span>[ September 2026 ]</span>
-      <span>Nice to Fit You (10 km)</span>
-      <span>51:20</span>
-    </figcaption>
   </figure>
 
   <section class="section-tight">

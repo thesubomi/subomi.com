@@ -23,7 +23,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" href={url("favicon.ico")} sizes="any" />
-    <link rel="icon" href={url("favicon.svg")} type="image/svg+xml" />
+    <link rel="icon" href={url("favicon.png")} type="image/png" sizes="96x96" />
     <link rel="apple-touch-icon" href={url("apple-touch-icon.png")} />
     <link rel="alternate" type="application/rss+xml" title={`${site.name}: writing`} href={url("rss.xml")} />
     <meta name="theme-color" content="#fbfbfb" />

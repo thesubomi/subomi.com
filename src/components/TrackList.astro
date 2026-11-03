@@ -11,7 +11,7 @@ const shown = limit ? tracks.slice(0, limit) : tracks;
       <li class="track">
         <span class="track-num">{pad(i + 1)}</span>
         <span><span class="track-title">{t.title}</span><span class="track-artist">{t.artist}</span></span>
-        <span class="track-note">{t.note ?? ""}</span>
+        {t.note && <span class="track-note">{t.note}</span>}
         <span class="track-time">{t.duration ?? ""}</span>
       </li>
     ))}

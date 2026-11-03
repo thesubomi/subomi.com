@@ -85,7 +85,8 @@ a.featured-title:hover { color: var(--ink-muted); }
 .featured-note { display: block; margin-top: 6px; font-size: var(--t-body); line-height: 1.4; color: var(--ink-muted); }
 
 .tracks { list-style: none; margin: 20px 0 0; padding: 0; }
-.track { display: grid; grid-template-columns: 32px minmax(0, 1fr) minmax(0, 1.2fr) auto; gap: 16px; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--hairline); }
+.track { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--hairline); }
+.track:has(.track-note) { grid-template-columns: 32px minmax(0, 1fr) minmax(0, 1.2fr) auto; }
 .track-num, .track-time { font-size: var(--t-label); color: var(--ink-muted); font-variant-numeric: tabular-nums; }
 .track-title { font-size: 16px; }
 .track-artist { display: block; font-size: 14px; color: var(--ink-muted); }
@@ -211,7 +212,7 @@ a.track-time { color: var(--ink); text-align: right; }
   .releases .track-note { display: none; }
   .row { grid-template-columns: minmax(0, 1fr); }
   .row > .aside { justify-self: start; text-align: left; align-items: flex-start; }
-  .track { grid-template-columns: 32px minmax(0, 1fr) auto; }
+  .track, .track:has(.track-note) { grid-template-columns: 32px minmax(0, 1fr) auto; }
   .track-note { display: none; }
   .index.playlists a { grid-template-columns: 32px minmax(0, 1fr) auto; }
   .index.posts a { grid-template-columns: 32px minmax(0, 1fr); }

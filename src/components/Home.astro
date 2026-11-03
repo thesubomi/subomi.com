@@ -112,3 +112,10 @@ const trip = (await getTravels())[0];
   <SectionHead title="Running" id="running-h" link={{ href: url("running/"), label: "More running" }} />
   <RunStats />
 </section>
+
+<script>
+  const root = document.documentElement;
+  const update = () => root.classList.toggle("scrolled", window.scrollY > 40);
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+</script>

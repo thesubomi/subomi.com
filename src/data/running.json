@@ -2,7 +2,7 @@
   "example": true,
   "month": "November 2026",
   "updated": "[date]",
-  "profile": "#",
+  "profile": "https://www.strava.com/athletes/846872637",
   "stats": [
     { "label": "Distance", "value": "128.4", "unit": "km" },
     { "label": "Runs", "value": "14", "unit": "" },

@@ -229,3 +229,6 @@ a.track-time { color: var(--ink); text-align: right; }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 html { scroll-behavior: smooth; }
+
+/* Coming soon: a section with nothing published yet */
+.soon-text { margin: 0; font-family: var(--font-display); font-size: clamp(20px, 2.2vw, 28px); line-height: 1.2; letter-spacing: -0.015em; color: var(--ink-muted); text-wrap: balance; }

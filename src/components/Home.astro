@@ -89,10 +89,10 @@ const trip = (await getTravels())[0];
 
 <section class="row section" aria-label="Art and travels">
   <span class="label">[ Art &amp; travels ]</span>
-  <div class="gallery">
+  {!art && !trip ? <p class="soon-text">Coming soon. The first pieces and trips are on their way.</p> : <div class="gallery">
     {art && <Tile href={url(`art/${art.id}/`)} title={art.data.title} kind="Art" n="01" image={art.data.image} alt={art.data.alt} placeholder="Latest piece" />}
     {trip && <Tile href={url(`travels/${trip.id}/`)} title={trip.data.place} kind="Travels" n="02" image={trip.data.cover} alt={trip.data.alt} placeholder="Photo from the trip" />}
-  </div>
+  </div>}
   <div class="aside"><a href={url("art/")}>→ All art</a><a href={url("travels/")}>→ All travels</a></div>
 </section>
 

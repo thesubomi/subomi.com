@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import SectionHead from "../../components/SectionHead.astro";
 import Tile from "../../components/Tile.astro";
+import ComingSoon from "../../components/ComingSoon.astro";
 import { getTravels } from "../../lib/content";
 import { url, pad, monthYear } from "../../lib/site";
 
@@ -12,11 +13,11 @@ const trips = await getTravels();
     <SectionHead title="Travels" level={1} />
     <p class="page-lede">Places I’ve been, in photos and a few words.</p>
   </section>
-  <section class="section">
+  {trips.length === 0 ? <ComingSoon text="The first trips are on their way." /> : <section class="section">
     <div class="gallery gallery-full">
       {trips.map((t, i) => (
         <Tile href={url(`travels/${t.id}/`)} title={t.data.place} kind={monthYear(t.data.date)} n={pad(i + 1)} image={t.data.cover} alt={t.data.alt} placeholder="Photo from the trip" eager={i < 3} />
       ))}
     </div>
-  </section>
+  </section>}
 </Base>

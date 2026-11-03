@@ -1,0 +1,9 @@
+---
+// Shown in place of a gallery until its first entry is published.
+interface Props { text: string }
+const { text } = Astro.props;
+---
+<div class="row section soon">
+  <span class="label">[ Coming soon ]</span>
+  <p class="soon-text">{text}</p>
+</div>

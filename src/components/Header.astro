@@ -10,9 +10,9 @@ const left = [
   ["Writing", "writing/"],
 ];
 const right = [
+  ["Design", "design/"],
   ["About", "about/"],
   ["Reads", "reads/"],
-  ["Travels", "travels/"],
 ];
 const all = [...left, ...right.filter(([l]) => l !== "About"), ["About", "about/"]];
 const current = (p: string) => path.startsWith(url(p));

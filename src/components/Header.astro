@@ -10,27 +10,29 @@ const left = [
   ["Writing", "writing/"],
 ];
 const right = [
-  ["Design", "design/"],
+  ["Design", "https://colorteam.io"],
   ["About", "about/"],
   ["Reads", "reads/"],
 ];
 const all = [...left, ...right.filter(([l]) => l !== "About"), ["About", "about/"]];
-const current = (p: string) => path.startsWith(url(p));
+const external = (p: string) => p.startsWith("http");
+const href = (p: string) => (external(p) ? p : url(p));
+const current = (p: string) => !external(p) && path.startsWith(url(p));
 ---
 <header class="site-header wrap">
   <nav class="site-nav site-nav-left" aria-label="Sections">
-    {left.map(([label, p]) => <a href={url(p)} aria-current={current(p) ? "page" : undefined}>{label}</a>)}
+    {left.map(([label, p]) => <a href={href(p)} aria-current={current(p) ? "page" : undefined} target={external(p) ? "_blank" : undefined} rel={external(p) ? "noopener" : undefined}>{label}</a>)}
   </nav>
   <a class="site-mark" href={home} aria-label={`${site.name}, home`}><OlaMark height={22} /></a>
   <nav class="site-nav site-nav-right" aria-label="More sections">
-    {right.map(([label, p]) => <a href={url(p)} aria-current={current(p) ? "page" : undefined}>{label}</a>)}
+    {right.map(([label, p]) => <a href={href(p)} aria-current={current(p) ? "page" : undefined} target={external(p) ? "_blank" : undefined} rel={external(p) ? "noopener" : undefined}>{label}</a>)}
   </nav>
   <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu">
     <span></span><span></span>
   </button>
   <div class="site-menu" id="site-menu" hidden>
     <nav aria-label="Menu">
-      {all.map(([label, p]) => <a href={url(p)} aria-current={current(p) ? "page" : undefined}>{label}</a>)}
+      {all.map(([label, p]) => <a href={href(p)} aria-current={current(p) ? "page" : undefined} target={external(p) ? "_blank" : undefined} rel={external(p) ? "noopener" : undefined}>{label}</a>)}
     </nav>
   </div>
 </header>

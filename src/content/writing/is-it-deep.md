@@ -38,7 +38,7 @@ I was genuinely astonished. Claude is open on my screen most of the day. I use i
 
 It isn't. Claude exists in my bubble. Outside that bubble there's a whole cosmos of people who only know Claude as a French name, or as the middle of Jean-Claude Van Damme. And they're doing just fine.
 
-That was me being the monkey, peering into the tank and assuming everyone else was in the same water I was.
+That was me being the giraffe, standing comfortably in water I had stopped noticing and assuming it was just as shallow for everyone else.
 
 ## Your normal is not the default
 

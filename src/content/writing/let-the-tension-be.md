@@ -8,7 +8,7 @@ imageAlt: "Dark card with white serif text: \"You know what kind of person is mo
 
 ![Dark card with white serif text. It asks what kind of person is most magnetic, and answers: the one who takes their work seriously but doesn't take themselves too seriously, who can be fully locked in and, ten minutes later, laughing so hard their eyes water. "That kind of person is rare" is highlighted in pink. It ends: driven AND fun, hungry AND humble, focused AND kind. Signed @StrongMindsetPro.](./images/let-the-tension-be.jpg)
 
-<p class="credit">Image: @StrongMindsetPro. I found it on LinkedIn, shared by Chris Laping in The Emotional Intelligence group and reposted by Tammy Lake. All credit to the creator. If it's yours, <a href="https://www.linkedin.com/in/subomidotcom/">message me</a> and I'll link you properly.</p>
+<p class="credit">Image: @StrongMindsetPro. I found it on LinkedIn, shared by Chris Laping in The Emotional Intelligence group and reposted by Tammy Lake. All credit to the creator.</p>
 
 I'm writing this on a train to Kraków. I haven't been to my favourite city in Poland in a while, and it was time to fix that. If you ever get the chance to visit this beautiful country, tell the pilot to drop you off in Kraków first. Thank me later.
 

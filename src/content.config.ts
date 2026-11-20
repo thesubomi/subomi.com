@@ -7,12 +7,15 @@ import { glob } from "astro/loaders";
 // src/content/writing/<slug>.md → subomi.com/writing/<slug>/
 const writing = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/writing" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(), // the line under the title, and the preview text on lists
-    date: z.coerce.date(), // only the month and year are shown
-    draft: z.boolean().default(false), // drafts show while editing locally, never on the live site
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string().optional(), // the line under the title, and the preview text on lists
+      date: z.coerce.date(), // only the month and year are shown
+      image: image().optional(), // featured image: the picture shown when the post is shared (1200×630 works best)
+      imageAlt: z.string().default(""),
+      draft: z.boolean().default(false), // drafts show while editing locally, never on the live site
+    }),
 });
 
 // src/content/music/<slug>.md → subomi.com/music/<slug>/

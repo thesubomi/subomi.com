@@ -284,13 +284,19 @@ html { scroll-behavior: smooth; }
 }
 
 /* Media: official photos with downloads */
-.media-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 16px; padding-bottom: var(--section); }
+.media-section { padding-bottom: var(--section); }
+.media-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 16px; }
+.media-headshot { grid-column: span 2; }
+.media-item.media-headshot img { aspect-ratio: 1 / 1; }
+.media-links { display: flex; gap: 16px; }
 .media-item { margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .media-item img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; object-position: top; background: var(--placeholder); border-radius: 2px; }
 .media-item figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-top: 12px; border-top: 1px solid var(--hairline); font-size: var(--t-label); }
 @media (max-width: 1100px) {
   .media-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .media-headshot { grid-column: span 1; }
 }
 @media (max-width: 760px) {
   .media-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .media-headshot { grid-column: auto; }
 }

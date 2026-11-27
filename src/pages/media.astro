@@ -1,0 +1,37 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHead from "../components/SectionHead.astro";
+import { Image } from "astro:assets";
+import { pad, url } from "../lib/site";
+import photo1 from "../assets/media/01.jpg";
+import photo2 from "../assets/media/02.jpg";
+import photo3 from "../assets/media/03.jpg";
+import photo4 from "../assets/media/04.jpg";
+
+// Display copies come from src/assets; the untouched originals for download live in public/media.
+const photos = [
+  { src: photo1, label: "Headshot", file: "subomi-archibong-01.jpg", alt: "Ọláṣùbòmí Archibong, head and shoulders, in a navy blazer and light blue shirt against a grey backdrop." },
+  { src: photo2, label: "Seated, full length", file: "subomi-archibong-02.jpg", alt: "Ọláṣùbòmí Archibong seated cross-legged on a black chair, in a black sweater, black trousers and white trainers." },
+  { src: photo3, label: "Seated, smiling", file: "subomi-archibong-03.jpg", alt: "Ọláṣùbòmí Archibong smiling, arms folded over the back of a clear chair, in a black sweater over a light blue shirt." },
+  { src: photo4, label: "Seated, portrait", file: "subomi-archibong-04.jpg", alt: "Ọláṣùbòmí Archibong resting his chin on his hand over the back of a clear chair, in a black sweater." },
+];
+const zip = url("media/subomi-archibong-official-photos.zip");
+---
+<Base title="Media" description="Official photos of Ọláṣùbòmí Archibong, free to download for press, events and features." image={photo1} imageAlt={photos[0].alt}>
+  <section class="page-intro">
+    <SectionHead title="Media" level={1} link={{ href: zip, label: "Download all (.zip)" }} />
+    <p class="page-lede">Official photos of Ọláṣùbòmí Archibong.<br />Free to use for press, events and features.</p>
+  </section>
+
+  <section class="media-grid" aria-label="Official photos">
+    {photos.map((p, i) => (
+      <figure class="media-item">
+        <Image src={p.src} alt={p.alt} widths={[480, 800, 1200]} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" loading="eager" />
+        <figcaption>
+          <span><span class="n">{pad(i + 1)}</span>{p.label}</span>
+          <a class="u" href={url(`media/${p.file}`)} download>Download JPG ↓</a>
+        </figcaption>
+      </figure>
+    ))}
+  </section>
+</Base>
